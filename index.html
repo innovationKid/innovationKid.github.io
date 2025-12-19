@@ -1049,7 +1049,6 @@ modal Area
      const phone = "919495339682";
      let message = "";
 
-     // Try card-based data first
      const card = this.closest('.tour-box');
 
      if (card) {
@@ -1057,12 +1056,11 @@ modal Area
        const details = card.querySelector('.destination-text')?.innerText.trim();
 
        if (title && details) {
-         // ⚠️ Avoid *bold* with ₹ for iOS WhatsApp stability
-         message = `I would like to book ${title}\n${details}`;
+         // ⚠️ SINGLE LINE — no formatting, safest
+         message = `I would like to book ${title}. ${details}`;
        }
      }
 
-     // Fallback to data-service
      if (!message) {
        const service = this.getAttribute('data-service');
        if (service) {
@@ -1070,15 +1068,15 @@ modal Area
        }
      }
 
-     // Final safety fallback
      if (!message) {
        message = "Hello! I would like to know more about your services.";
      }
 
-     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+     // IMPORTANT: encode once, fully
+     const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
-     // Better for iOS Safari than window.open
-     window.location.href = url;
+     // 🔥 THIS IS THE KEY LINE
+     window.location.assign(url);
    });
  });
  </script>
