@@ -1083,38 +1083,6 @@ modal Area
  });
  </script>
 
- 
-/*
-<script>
-  document.querySelectorAll('.book-now-btn').forEach(button => {
-    button.addEventListener('click', function (e) {
-      e.preventDefault();
-      const card = this.closest('.tour-box');
-      const title = card.querySelector('.box-title').innerText.trim();
-      const details = card.querySelector('.destination-text').innerText.trim();
-      const phone = "919495339682";
-
-      const message = `I would like to book *${title}* - ${details}`;
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    });
-  });
-
-</script>
-<script>
-  document.querySelectorAll('.book-now-btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const service = this.getAttribute('data-service');
-      const phoneNumber = "919495339682";
-      const message = `Hello! I'm interested in booking the ${service}.`;
-      const encoded = encodeURIComponent(message);
-      const url = `https://wa.me/${phoneNumber}?text=${encoded}`;
-      window.open(url, '_blank');
-    });
-  });
-</script>
-*/
     <!--==============================
     All Js File
 ============================== -->
