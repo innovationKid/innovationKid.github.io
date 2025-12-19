@@ -1040,6 +1040,51 @@ modal Area
     }
   }
 </style>
+ 
+ <script>
+ document.querySelectorAll('.book-now-btn').forEach(btn => {
+   btn.addEventListener('click', function (e) {
+     e.preventDefault();
+
+     const phone = "919495339682";
+     let message = "";
+
+     // Try card-based data first
+     const card = this.closest('.tour-box');
+
+     if (card) {
+       const title = card.querySelector('.box-title')?.innerText.trim();
+       const details = card.querySelector('.destination-text')?.innerText.trim();
+
+       if (title && details) {
+         // ⚠️ Avoid *bold* with ₹ for iOS WhatsApp stability
+         message = `I would like to book ${title}\n${details}`;
+       }
+     }
+
+     // Fallback to data-service
+     if (!message) {
+       const service = this.getAttribute('data-service');
+       if (service) {
+         message = `Hello! I'm interested in booking ${service}.`;
+       }
+     }
+
+     // Final safety fallback
+     if (!message) {
+       message = "Hello! I would like to know more about your services.";
+     }
+
+     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+     // Better for iOS Safari than window.open
+     window.location.href = url;
+   });
+ });
+ </script>
+
+ 
+/*
 <script>
   document.querySelectorAll('.book-now-btn').forEach(button => {
     button.addEventListener('click', function (e) {
@@ -1069,7 +1114,7 @@ modal Area
     });
   });
 </script>
-
+*/
     <!--==============================
     All Js File
 ============================== -->
